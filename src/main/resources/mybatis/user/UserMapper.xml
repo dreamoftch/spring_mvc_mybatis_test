@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tch.test.spring_mvc_mybatis.dao.user.UserMapper">
     <select id="getAllUsers" resultType="com.tch.test.spring_mvc_mybatis.model.User">
+	    select 
+	    	id,
+			age,
+			username,
+			password,
+			updateTime
+	    from _user
     </select>
 </mapper>
