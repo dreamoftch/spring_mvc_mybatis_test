@@ -12,13 +12,19 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     http://www.springframework.org/schema/mvc  
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    
 	<!-- 启动扫描component功能 -->
 	<context:component-scan base-package="com.tch.test.spring_mvc_mybatis" />
+	
+	<context:annotation-config></context:annotation-config>
+	
+	<mvc:annotation-driven />
+	
 	<!-- viewResolver -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
-	</bean>
+	</bean> -->
 	
 	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="configLocation" value="classpath:velocity.properties" />
@@ -34,19 +40,18 @@
 		<property name="exposeSessionAttributes" value="true"/>
 		<property name="exposeRequestAttributes" value="true"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>
-		<!-- <property name="toolboxConfigLocation"> 
+		<property name="toolboxConfigLocation"> 
 			<value>WEB-INF/classes/toolbox.xml</value> 
-		</property>  -->
+		</property>
 	</bean>
 	
-	<mvc:annotation-driven />
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<!-- 这里配置的拦截器相当于全局拦截器，只要有响应的后端处理器，就会经过该拦截器 -->
 		<bean class="com.tch.test.spring_mvc_mybatis.interceptor.spring.MyInteceptor" />
 		<mvc:interceptor>
 			<!-- 只拦截匹配的路径 -->
-			<mvc:mapping path="/namespace/*" />
+			<mvc:mapping path="/userController/*" />
 			<bean class="com.tch.test.spring_mvc_mybatis.interceptor.spring.MyInteceptor2" />
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -1,0 +1,4 @@
+user index<br>
+#foreach( $user in $users)
+    ${user.id}--${user.age}--${user.username}--${user.password}--$!date.format('yyyy-MM-dd HH:mm:ss ',$!user.updateTime)</br>
+#end
