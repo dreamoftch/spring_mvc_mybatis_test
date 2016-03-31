@@ -1,4 +1,4 @@
-package com.tch.test.spring_mvc_mybatis.model;
+package com.tch.test.spring_mvc_mybatis.model.user;
 
 import java.util.Date;
 

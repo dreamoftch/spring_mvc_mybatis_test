@@ -2,7 +2,7 @@ package com.tch.test.spring_mvc_mybatis.service.user;
 
 import java.util.List;
 
-import com.tch.test.spring_mvc_mybatis.model.User;
+import com.tch.test.spring_mvc_mybatis.model.user.User;
 
 public interface UserService {
 

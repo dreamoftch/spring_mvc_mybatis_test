@@ -20,18 +20,17 @@
 	
 	<mvc:annotation-driven />
 	
-	<!-- viewResolver -->
-	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
-	</bean> -->
+	<!-- 这个很重要，使用容器默认的servlet去处理静态资源,如果不加这个配置，就会导致无法再controller中返回jsp的view -->
+	<mvc:default-servlet-handler/>
 	
 	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="configLocation" value="classpath:velocity.properties" />
 	</bean>
 	
+	<!-- 配置velocity视图 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="order" value="1"></property>
 		<property name="prefix" value=""></property>
 		<property name="suffix" value=".vm"/>
 		<property name="cache" value="true"/>
@@ -43,6 +42,14 @@
 		<property name="toolboxConfigLocation"> 
 			<value>WEB-INF/classes/toolbox.xml</value> 
 		</property>
+	</bean>
+	
+	<!-- 配置JSP视图 -->
+     <bean id="viewResolverJSP" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="2"></property>
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
 	</bean>
 	
 	<!-- 拦截器 -->
