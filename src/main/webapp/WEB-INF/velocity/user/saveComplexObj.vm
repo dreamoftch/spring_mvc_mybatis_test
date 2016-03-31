@@ -1,0 +1,43 @@
+<head>
+<title>传输复杂对象到后台controller</title>
+<script type="text/javascript" src="${rc.contextPath}/scripts/jquery.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/scripts/json2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+			var param = {};
+			param.name='张三';
+			param.age = 25;
+			param.parents = [];
+			
+			var mother = {};
+			mother.name='妈妈';
+			mother.age = 47;
+			param.parents.push(mother);
+			
+			var father = {};
+			father.name='爸爸';
+			father.age = 49;
+			param.parents.push(father);
+			var paramStr = JSON.stringify(param);
+			var data = {};
+			data.paramStr = paramStr;
+			$("#addPerson").click(function(){
+				$.ajax({
+					  type: 'POST',
+					  url: '${rc.contextPath}/userController/addPerson',
+					  data: data,
+					  success : function (data, textStatus) {
+						    $("#result").html(data);
+						}
+					});
+			});
+	});
+	
+</script>
+</head>
+<body>
+<input type="button" value="addPerson" id="addPerson">
+<div id="result">
+</div>
+</body>
+</html>

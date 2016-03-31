@@ -1,0 +1,12 @@
+person.name: $!{person.name}<br>
+
+person.age: $!{person.age}<br>
+
+
+person.parents: $!{person.parents}<br>
+
+#foreach( $parent in $!{person.parents})
+    parent.name: $!{parent.name}<br>
+
+	parent.age: $!{parent.age}<br>
+#end
